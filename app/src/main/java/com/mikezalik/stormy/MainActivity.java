@@ -41,33 +41,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getForecast(latitude, longitude);
+        }
 
-    }
 
-    private void getForecast(double latitude, double longitude) {
+        private void getForecast(double latitude, double longitude) {
         setContentView(R.layout.activity_main);
         final ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this,
                 R.layout.activity_main);
 
         TextView darkSky = findViewById(R.id.darkSkyAttribution);
-
         darkSky.setMovementMethod(LinkMovementMethod.getInstance());
 
         iconImageView = findViewById(R.id.iconImageView);
-
         String apiKey = "aaf4e3d11b6e88832c7d784e4b1d189f";
-
-
 
         String forecastURL = "https://api.darksky.net/forecast/"
                 + apiKey + "/" + latitude +"," + longitude;
 
         if(isNetworkAvailable()) {
-
             OkHttpClient client = new OkHttpClient();
-
             Request request = new Request.Builder().url(forecastURL).build();
-
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
                 @Override
@@ -103,12 +96,8 @@ public class MainActivity extends AppCompatActivity {
                                 public void run() {
                                     Drawable drawable = getResources().getDrawable(displayWeather.getIconId());
                                     iconImageView.setImageDrawable(drawable);
-
                                 }
                             });
-
-
-
                         } else {
                             alertUserAboutError();
                         }
@@ -122,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
     private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
 
@@ -144,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
 
         return currentWeather;
     }
-
     private boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
@@ -158,12 +145,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return isAvailable;
     }
-
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");
     }
-
     public void refreshOnClick(View view) {
         getForecast(latitude, longitude);
         Toast.makeText(this, "Refreshing Data", Toast.LENGTH_LONG).show();
