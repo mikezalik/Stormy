@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
                             binding.setWeather(displayWeather);
 
-
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -107,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-
         }
     }
     private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
