@@ -1,6 +1,5 @@
 package com.mikezalik.stormy;
 
-import java.nio.file.SimpleFileVisitor;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
