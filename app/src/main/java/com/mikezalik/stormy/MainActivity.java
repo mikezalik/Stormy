@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationResult;
@@ -48,16 +49,18 @@ public class MainActivity extends AppCompatActivity {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getForecast(latitude, longitude);
         }
-
+    FusedLocationProviderClient extends GoogleApiActivity {
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
         @Override
         public void onSuccess(Location location) {
-            // Got last known location. In some rare situations this can be null.
+            return latitude;
+            return longitude;
             if (location != null) {
             }
         }
-    });
+        });
+    }
 
         private void getForecast(double latitude, double longitude) {
         setContentView(R.layout.activity_main);
