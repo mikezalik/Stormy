@@ -14,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationResult;
+
 import com.mikezalik.stormy.databinding.ActivityMainBinding;
 
 import org.json.JSONException;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     private CurrentWeather currentWeather;
+    private FusedLocationProviderClient mFusedLocationClient;
 
     private ImageView iconImageView;
 
@@ -40,8 +45,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getForecast(latitude, longitude);
         }
+
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+        @Override
+        public void onSuccess(Location location) {
+            // Got last known location. In some rare situations this can be null.
+            if (location != null) {
+            }
+        }
+    });
 
         private void getForecast(double latitude, double longitude) {
         setContentView(R.layout.activity_main);
