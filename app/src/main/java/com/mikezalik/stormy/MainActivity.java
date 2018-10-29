@@ -61,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
         }
         });
     }
-
         private void getForecast(double latitude, double longitude) {
-        setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);
         final ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this,
                 R.layout.activity_main);
 
